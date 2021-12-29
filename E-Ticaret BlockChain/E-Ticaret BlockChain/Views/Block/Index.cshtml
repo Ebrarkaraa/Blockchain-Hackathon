@@ -1,0 +1,37 @@
+﻿@using E_Ticaret_BlockChain.Entity
+@model List<Block>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <table class="table table-bordered" border="1">
+        <tr>
+            <th>BLOCK ID</th>
+            <th>TARİH</th>
+            <th>DATA</th>
+            <th>PREVHASH</th>
+            <th>HASH</th>
+        </tr>
+        @foreach (var blck in Model)
+        {
+            <tr>
+                <td>@blck.id</td>
+                <td>@blck.timestamp</td>
+                <td>@blck.data</td>
+                <td>@blck.prevHash</td>
+                <td>@blck.hash</td>
+            </tr>
+        }
+
+    </table>
+</body>
+</html>

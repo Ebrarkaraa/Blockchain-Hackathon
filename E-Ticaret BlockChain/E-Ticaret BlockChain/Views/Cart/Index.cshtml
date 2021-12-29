@@ -1,0 +1,52 @@
+﻿@model E_Ticaret_BlockChain.Models.Cart
+@{
+    ViewBag.Title = "Index";
+}
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+<!-- Mirrored from themelooks.us/demo/quickfix/html/preview/cart.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 13 Jul 2017 10:30:05 GMT -->
+<body>
+    <div class="preloader bg--color-theme"></div>
+    <div class="wrapper">
+        <div class="page-header--section text-center"> <div class="page--title pd--130-0" data-bg-img="/atc333/img/page-header-img.jpg"> <div class="container"> <h1 class="h1">Sepet</h1> </div></div><div class="page--breadcrumb font--secondary"> <div class="container"> <ul class="breadcrumb"> <li><a href="/Home/Index">Art</a></li><li><a href="/Home/Shop">Mağaza</a></li><li class="active"><span>Sepet</span></li></ul> </div></div></div>
+        <div class="cart--section pd--100-0">
+            <div class="container">
+                <div class="cart--items">
+                    <form action="#">
+                        <table class="table">
+                            <thead> <tr> <th>Catalogue</th> <th>Product Name</th> <th>Price</th> <th>Quantity</th> <th>Total Price</th> <th>Remove</th></tr></thead>                              
+                            <tbody>
+                                @foreach (var item in Model.CartLines)
+                                {
+                                    <tr>
+                                        <td data-label="Catalogue"> <a href="#"> <img src="/atc333/img/shop-img/@item.Product.Image" width="150" alt="" data-rjs="2"> </a> </td>
+                                        <td data-label="Product Name"> <a href="#">@item.Product.Title</a> </td>
+                                        <td data-label="Price">@item.Product.Price</td>
+                                        <td data-label="Quantity"> @item.Quantity @*<div class="quantity"> <input type="text" value="2" data-trigger="spinner" data-min="1" data-max="10"> </div>*@</td>
+                                        <td data-label="Total Price">@(item.Product.Price*item.Quantity)$</td>
+                                        <td>
+                                            @using (Html.BeginForm("RemoveFromCart", "Cart"))
+                                            {
+                                                @Html.Hidden("Id", item.Product.Id)
+                                                <button type="submit" class="remove"></button>
+                                            }
+                                        </td>
+                                    </tr>
+                                 }
+                            </tbody>
+                        </table>
+                    </form>
+                </div><div class="row"> <div class="cart--coupon col-md-4 col-sm-6"> <h2 class="cart--title h4">Kupon Kodu</h2> <p class="sub-title">Kupon kodunuzu giriniz</p><div data-form-validation="true"> <form action="#"> <div class="input-group"> <input type="text" name="coupon" placeholder="Kupon Kodunu Giriniz" class="form-control" required> <div class="input-group-btn"> <button type="submit" class="btn btn-default active">Onayla</button> </div></div></form> </div></div><div class="cart--total col-md-4 col-md-offset-4 col-sm-6"> <h2 class="cart--title h4">Sepet Toplamı</h2> <table class="table"><tr> <td>Toplam</td><td>@Model.Total().ToString()$</td></tr></table> <a class="btn btn-default">Satın Al</a> </div></div>
+            </div>
+        </div>
+        <div class="footer--copyright-border"></div>
+        <div class="container bg--overlay">
+            <div class="row reset--gutter">
+            </div>
+        </div>
+    </div>
+    <div class="back-to-top-btn"> <a href="#" class="btn btn-default active"><i class="fa fa-angle-up"></i></a> </div>
+</body>
+<!-- Mirrored from themelooks.us/demo/quickfix/html/preview/cart.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 13 Jul 2017 10:30:07 GMT -->
+</html>
+

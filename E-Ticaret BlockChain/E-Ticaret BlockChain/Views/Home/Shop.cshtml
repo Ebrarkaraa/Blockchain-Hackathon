@@ -1,0 +1,64 @@
+﻿@using E_Ticaret_BlockChain.Entity
+@model IEnumerable<Product>
+@{
+    ViewBag.Title = "Shop";
+}
+
+<div class="page-header--section text-center">
+    <div class="page--title pd--130-0" data-bg-img="img/page-header-img.jpg"> <div class="container"> <h1 class="h1">Shop</h1> </div></div><div class="page--breadcrumb font--secondary">
+        <div class="container"> <ul class="breadcrumb"> <li><a href="index-2.html">Art</a></li><li class="active"><span>Shop</span></li></ul> </div>
+    </div>
+</div>
+<div class="products--section pd--100-0">
+    <div class="container">
+        <div class="row AdjustRow">
+            @foreach (var urun in Model)
+            {
+                <div class="col-md-3 col-xs-6 col-xxs-12">
+                    <div class="product--item">
+                        <div class="product--item-img">
+                            <img src=/atc333/img/shop-img/@urun.Image alt="" data-rjs="2"> <div class="product--item-img-info bg--overlay">
+                                <div class="vc--parent">
+                                    <div class="vc--child">
+                                        <div class="btn-groups">
+                                            <a href="#" class="btn btn-default" title="Wishlist" data-toggle="tooltip"><i class="fa fa-heart-o"></i></a>
+                                            @using (Html.BeginForm("AddToCart", "Cart"))
+                                            {
+                                                @urun.Title
+                                                <button type="submit" class="btn btn-default" title="Add to Cart" data-toggle="tooltip"><i class="fa fa-shopping-cart"></i></button>       
+                                            }                                    
+                                            <a href="#" class="btn btn-default" title="View Details" data-toggle="tooltip"><i class="fa fa-eye"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product--item-info">
+                            <h2 class="h5"><a href="shop-details.html">@urun.Title</a></h2> <div class="clearfix">
+                                <div class="rating">
+                                    <ul class="nav">
+                                        <li><i class="fa fa-star-o"></i></li>
+                                        <li><i class="fa fa-star-o"></i></li>
+                                        <li><i class="fa fa-star-o"></i></li>
+                                        <li><i class="fa fa-star-o"></i></li>
+                                        <li>
+                                            <i class="fa fa-star-o">
+                                            </i>
+                                        </li>
+                                    </ul>
+                                </div><div class="price"> <p>@urun.Price$</p></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div><ul class="pager">
+            <li><a href="#"><i class="fa fm fa-long-arrow-left"></i>Previous</a></li>
+            <li>
+                <span><em>01</em> / 05</span>
+            </li>
+            <li><a href="#">Next<i class="fa flm fa-long-arrow-right"></i></a></li>
+        </ul>
+    </div>
+</div>
